@@ -18,30 +18,30 @@ int main(void)
 	char *a=malloc(sizeof(char *)*1000);
 	char *b=malloc(sizeof(char *)*1000);
 	int i=0;
+	char *a1;
+	char *b1;
+	char *x;
+	char *kma;
+	
 	printf("Please enter the First Multiplicant:\t");
 	scanf("%s", a);
 	printf("Please enter the Second Multiplicant:\t");
 	scanf("%s", b);
 	long k=strlen(a);
 	long o=strlen(b);
-	char *a1;
 	a1=(char *)malloc(sizeof(char *)*(k+1));
 	strcpy(a1,a);
 	free(a);
-	char *b1;
 	b1=(char *)malloc(sizeof(char *)*(o+1));
 	strcpy(b1,b);
 	free(b);
-	char *x;
 	x=(char *)malloc(sizeof(char *)*(k+o));
 	if(k>o)
 		{
-			
-			char *kma;
 			kma=(char *)malloc(sizeof(char *)*(k-o+1));
 			for(i=0;i<(k-o);i++)
 					kma[i]='0';
-					kma[i]='\0';
+			kma[i]='\0';
 			strcat(kma,b1);
 			strcpy(b1,kma);
 			free(kma);
@@ -49,11 +49,10 @@ int main(void)
 		}
 	else if(k<o)
 		{
-			char *kma;
 			kma=(char *)malloc(sizeof(char *)*(o-k));
 			for(i=0;i<(o-k);i++)
 					kma[i]='0';
-					kma[i]='\0';
+			kma[i]='\0';
 			strcat(kma,a1);
 			strcpy(a1,kma);
 			free(kma);
@@ -71,24 +70,26 @@ int main(void)
 	
 char * karatsuba(char *a,char *b,int k)
 {
+	char *s;
+	int len;
+	char *s1;
+	int odd=0;
+	int n=k;
+	int x;
+	int i;
+	int jk;
+	
 	if(k==1)
 		{
 			int z=(a[0]-'0')*(b[0]-'0');
-			char *s;
 			s=(char *)malloc(sizeof(char *)*3);
 			sprintf(s, "%d", z);
-			int len;
 			len=strlen(s);
-			char *s1;
 			s1=(char *)malloc(sizeof(char *)*(len+1));
 			strcpy(s1,s);
 			free(s);
 			return s1;
 		}
-	int odd=0;
-	int n=k;
-	int x;
-	int i;
 	if(strlen(a)<strlen(b))
 		{
 			x=strlen(b)-strlen(a);
@@ -116,7 +117,6 @@ char * karatsuba(char *a,char *b,int k)
 		    odd=1;
 		    n=n+1;
 		}
-		int jk;
 		if(strlen(a)>strlen(b))
 			jk=strlen(a);
 		else
